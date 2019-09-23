@@ -12,7 +12,9 @@ if errorlevel 0 set rds=Y
 choice /m "Are you using a Zabbix Proxy"
 if errorlevel 1 set proxy=N
 if errorlevel 0 set proxy=Y
-if /I %proxy% EQU Y set /P proxyip=Please enter the Zabbix Proxy IP address:
+if "%proxy%"=="Y" (
+  set /P proxyip=Please enter the Zabbix Proxy IP address:
+)
 
 echo "Removing the old Zabbix Client"
 sc stop "Zabbix Agent"
@@ -23,11 +25,11 @@ echo Installing new Zabbix Agent
 md c:\zabbix
 copy c:\temp\zabbix\bin\*.* c:\zabbix
 
-Echo Creating config fil"
+Echo Creating config file
 echo LogFile=c:\zabbix\zabbix_agentd.log>c:\zabbix\zabbix_agentd.win.conf
 echo Hostname=%hostname%>>c:\zabbix\zabbix_agentd.win.conf
 
-if /I "%proxyip% NOT == [] GOTO ADDPROXY
+if /I "%proxyip%" NOT == [] GOTO ADDPROXY
 GOTO ADDNOPROXY
 
 :ADDPROXY
