@@ -1,5 +1,6 @@
 @echo off
-echo "Welcome to the Advisor Zabbix Installation script"
+echo.
+echo Welcome to the Advisor Zabbix Installation script
 echo.
 if not exist ping.exe goto NotAnAdministrator
 echo.
