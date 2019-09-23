@@ -1,4 +1,4 @@
-@echo off
+rem echo off
 echo.
 echo Welcome to the Advisor Zabbix Installation script
 echo.
