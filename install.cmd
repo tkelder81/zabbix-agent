@@ -10,12 +10,10 @@ if errorlevel 1 set rds=N
 if errorlevel 0 set rds=Y
 
 choice /m "Are you using a Zabbix Proxy"
-if errorlevel 1 set proxy=N
-if errorlevel 0 set proxy=Y
-if "%proxy%"=="Y" (
-  set /P proxyip=Please enter the Zabbix Proxy IP address:
-)
+if errorlevel 1 goto RemoveZabbix-Agent
+if errorlevel 0 set /P proxyip=Please enter the Zabbix Proxy IP address:
 
+:RemoveZabbix-Agent
 echo "Removing the old Zabbix Client"
 sc stop "Zabbix Agent"
 c:\zabbix\zabbix_agentd.exe --uninstall
