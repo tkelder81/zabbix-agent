@@ -55,7 +55,6 @@ c:\zabbix\zabbix_agentd.exe --config c:\zabbix\zabbix_agentd.win.conf --install
 net start "Zabbix Agent"
 echo Removing temp files
 del /q /s c:\temp\zabbix
-del /q c:\temp\install.cmd
 del /q c:\temp\zabbix_agents-4.2.6-win-i386-openssl.zip
 goto end
 
