@@ -6,12 +6,12 @@ if not exist ping.exe goto NotAnAdministrator
 
 set /P hostname=Please enter the Hostname as configured in Zabbix:
 choice /m "Is this server a RDS host"
-if errorlevel 1 set rds=N
-if errorlevel 0 set rds=Y
+if errorlevel 2 set rds=N
+if errorlevel 1 set rds=Y
 
 choice /m "Are you using a Zabbix Proxy"
-if errorlevel 1 goto RemoveZabbix-Agent
-if errorlevel 0 set /P proxyip=Please enter the Zabbix Proxy IP address:
+if errorlevel 2 goto RemoveZabbix-Agent
+if errorlevel 1 set /P proxyip=Please enter the Zabbix Proxy IP address:
 
 :RemoveZabbix-Agent
 echo "Removing the old Zabbix Client"
