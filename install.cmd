@@ -23,12 +23,12 @@ echo Installing new Zabbix Agent
 md c:\zabbix
 copy c:\temp\zabbix\bin\*.* c:\zabbix
 
-Echo Creating config file
+echo Creating config file
 echo LogFile=c:\zabbix\zabbix_agentd.log>c:\zabbix\zabbix_agentd.win.conf
 echo Hostname=%hostname%>>c:\zabbix\zabbix_agentd.win.conf
 
-if /I "%proxyip%" NOT == [] GOTO ADDPROXY
-GOTO ADDNOPROXY
+if defined proxyip (GOTO ADDPROXY)
+if not defined proxyip (GOTO ADDNOPROXY)
 
 :ADDPROXY
 echo Server=%proxyip%>>c:\zabbix\zabbix_agentd.win.conf
